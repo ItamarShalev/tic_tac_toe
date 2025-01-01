@@ -1,0 +1,13 @@
+services:
+    flask_tic_tac_toe:
+        container_name: flask_tic_tac_toe
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                PORT: ${PORT:-80}
+        environment:
+            FLASK_APP: ${FLASK_APP:-src/app.py}
+            PORT: ${PORT:-80}
+        ports:
+            - "${PORT:-80}:${PORT:-80}"

@@ -1,3 +1,4 @@
+from __future__ import annotations
 import operator
 
 from src.data.exceptions import InvalidSymbolBoard, InvalidLinesSize, InvalidIndexBoard, OccupiedCell, InvalidBoard
@@ -13,10 +14,12 @@ class Board:
     def __init__(
             self,
             board: list[list[str]] | None = None,
-            lines: int = DEFAULT_LINES,
-            columns: int = DEFAULT_COLUMNS,
+            lines: int | None = None,
+            columns: int | None = None,
             victory_sequence: int | None = None
     ):
+        lines = lines or self.DEFAULT_LINES
+        columns = columns or self.DEFAULT_COLUMNS
         board = board or [[' '] * columns for _ in range(lines)]
         self._board, self._lines, self._columns = self._init_board(board)
         max_victory_sequence = min(self._lines, self._columns)
@@ -52,6 +55,11 @@ class Board:
     def winner(self) -> Piece | None:
         return self._winner
 
+    def raw(self) -> list[list[str]]:
+        return [[str(piece) for piece in row] for row in self._board]
+
+    def copy(self) -> Board:
+        return Board(self.raw(), self._lines, self._columns, self._victory_sequence)
 
     def player_must_to_start(self) -> Piece | None:
         count_x_players = sum(piece is Piece.X for row in self._board for piece in row)

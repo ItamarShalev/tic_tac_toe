@@ -22,3 +22,6 @@ class OccupiedCell(InvalidMove):
 
 class GameOver(TicTacToeException):
     pass
+
+class InvalidTurn(TicTacToeException):
+    pass

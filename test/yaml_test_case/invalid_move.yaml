@@ -1,0 +1,11 @@
+game:
+    board:
+        - [ "X", " ", " " ]
+        - [ " ", "O", " " ]
+        - [ " ", " ", " " ]
+
+    current_player: "X"
+actions:
+    -   type: move
+        index: 0
+        error: invalid_move

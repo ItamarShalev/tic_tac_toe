@@ -1,0 +1,19 @@
+game:
+    board:
+        - [ " ", " ", " " ]
+        - [ " ", "O", " " ]
+        - [ "X", " ", " " ]
+
+    current_player: "X"
+actions:
+    -   type: move
+        index: 0
+
+    -   type: move
+        index: 1
+
+    -   type: move
+        index: 3
+
+    -   type: check_state
+        state: "X Win"
